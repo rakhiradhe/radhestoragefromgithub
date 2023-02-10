@@ -1,0 +1,24 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+  
+# Starter pipeline
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'azureconnforbicep'
+    subscriptionId: 'fca3d976-6a03-4c81-bcd1-f5cb81d8bd6c'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'azbicepresourcegroip'
+    location: 'UK West'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/rakhiradhe/radhestoragefromgithub/master/quickstarts/microsoft.storage/storage-account-create/azuredeploy.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/rakhiradhe/radhestoragefromgithub/master/quickstarts/microsoft.storage/storage-account-create/azuredeploy.parameters.json'
+    deploymentMode: 'Incremental'
+    deploymentName: 'radhedeployment'
+    deploymentOutputs: 'radheout'
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
